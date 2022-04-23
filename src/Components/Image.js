@@ -17,7 +17,7 @@ function Image({imgName, width, height}) {
 			console.log("Not an image");
 			break;
 	}
-  return (<img src={img} width={width} height={height} draggable={false} />)
+  return (<img src={img} width={width} height={height} draggable={false} style={{zIndex: -1}}/>)
 }
 
 export default Image;

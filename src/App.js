@@ -26,7 +26,7 @@ function App() {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	const mapSize = 200;
+	const mapSize = 1000;
 
 	return (
 		<div
@@ -35,8 +35,10 @@ function App() {
 				width: (windowDimensions.height * 0.9) / multiplier,
 				border: "2px solid black",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "flex-start"
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flexDirection: "column",
+        overflow: "hidden"
 			}}
 		>
             <SearchBar />
@@ -46,7 +48,7 @@ function App() {
         defaultPosition={{x:100, y:100}}
         position={null}
       >
-        <div style={{position: "absolute"}}>
+        <div>
           <Image imgName={"ground"} width={mapSize} />
         </div>
       </Draggable>

@@ -1,10 +1,10 @@
-import { Image } from "./Components";
+import { Image, SearchBar } from "./Components";
 
 function App() {
   return (
     <div>
-      <Image />
       Beep boop
+      <SearchBar/>
     </div>
   );
 }

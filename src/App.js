@@ -34,17 +34,22 @@ function App() {
 				height: windowDimensions.height * 0.9,
 				width: (windowDimensions.height * 0.9) / multiplier,
 				border: "2px solid black",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start"
 			}}
 		>
-			<Draggable
-				bound={"parent"}
+            <SearchBar />
+
+      <Draggable
+        bound={"parent"}
         defaultPosition={{x:100, y:100}}
-			>
-				<div>
-					<Image imgName={"ground"} width={mapSize} heigh={mapSize} />
-				</div>
-			</Draggable>
-			<SearchBar />
+        position={null}
+      >
+        <div style={{position: "absolute"}}>
+          <Image imgName={"ground"} width={mapSize} />
+        </div>
+      </Draggable>
 		</div>
 	);
 }

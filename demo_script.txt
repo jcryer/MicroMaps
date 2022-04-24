@@ -1,0 +1,10 @@
+Welcome to our new app, this home screen you may be familair with from other navigation apps.
+There is a map you can zoom and pan, a search bar to find where you want to go and a level selector
+in the top right corner.
+Lets say we are ugently need the toilet, we can go to the bar at the top and search toilet.
+As you can see from the suggestions, we have been in this situation before. 
+Since I am currently on the ground floor, I will choose the toilet on the ground floor.
+This window allows us to select the type of route we want to take, since its urgent I will pick
+the fastest option.
+Now all I have to do is follow the directions and take care of my business, but ill spare you from
+that experience

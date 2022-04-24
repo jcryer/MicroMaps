@@ -25,7 +25,7 @@ const searchData = [
 		title: "Edge Toilet Floor 3",
 		stepFree: false,
 		map: "logo",
-		levels: ["route_3_ground", "route_3_first", "route_3_second", "route_3_third"],
+		levels: ["route_3_ground", null, null, "route_3_third"],
 	},
 ];
 

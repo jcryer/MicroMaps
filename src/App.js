@@ -53,6 +53,8 @@ function App() {
 
 	const [showSearchScreen, setShowSearchScreen] = useState(false);
 
+	const [currentImage, setCurrentImage] = useState("ground");
+
 	let upHandler = useKeyPress("ArrowUp");
 	let downHandler = useKeyPress("ArrowDown");
 
@@ -90,7 +92,6 @@ function App() {
 			<SearchBar
 				onClickFunc={(e) => {
 					setShowSearchScreen(true);
-
 				}}
 				onBackClickFunc={(e) => {
 					setShowSearchScreen(false);
@@ -98,7 +99,18 @@ function App() {
 				isClicked={showSearchScreen}
 			/>
 
-			{showSearchScreen ? SearchDropDown() : false}
+			{showSearchScreen ? (
+				<SearchDropDown
+					clickRouteFunc={(e) => {
+						let x = e.currentTarget.getAttribute("map");
+						console.log(String(x));
+						setCurrentImage(x);
+						setShowSearchScreen(false);
+					}}
+				/>
+			) : (
+				false
+			)}
 
 			<Draggable
 				bound={"parent"}
@@ -106,7 +118,7 @@ function App() {
 				position={null}
 			>
 				<div>
-					<Image imgName={"ground"} width={mapSize} />
+					<Image imgName={currentImage} width={mapSize} />
 				</div>
 			</Draggable>
 		</div>

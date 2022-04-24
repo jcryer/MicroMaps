@@ -1,10 +1,33 @@
-import { Image, SearchBar, SearchDropDown, FloorSelect, RouteTypeDialog } from "./Components";
+import { Image, SearchBar, FloorSelect, RouteTypeDialog } from "./Components";
 import { useRef, useState, useEffect } from "react";
 
 import Draggable from "react-draggable";
 
 const MAX_MAP_SIZE = 2000;
 const MIN_MAP_SIZE = 500;
+
+const defaultMaps = ["ground", "first", "second", "third"];
+
+const searchData = [
+	{
+		title: "Edge Toilet Ground Floor",
+		stepFree: true,
+		map: "logo",
+		levels: ["route_1_ground", null, null, null],
+	},
+	{
+		title: "Edge Toilet Floor 1",
+		stepFree: true,
+		map: "logo",
+		levels: ["route_2_ground", "route_2_first", null, null],
+	},
+	{
+		title: "Edge Toilet Floor 3",
+		stepFree: false,
+		map: "logo",
+		levels: ["route_3_ground", "route_3_first", "route_3_second", "route_3_third"],
+	},
+];
 
 function useKeyPress(targetKey) {
 	// State for keeping track of whether key is pressed
@@ -55,27 +78,26 @@ function App() {
 
 	const [currentImage, setCurrentImage] = useState("ground");
 
-	const [currentRoute, setCurrentRoute] = useState("none");
-
-	const [currentRouteLevel, setCurrentRouteLevel] = useState(0);
-
 	const [currentLevel, setCurrentLevel] = useState(0);
 
+	const [maps, setMaps] = useState(defaultMaps);
+
 	const [search, setSearch] = useState("");
+
+	const [route, setRoute] = useState({});
+	const [routeDialog, setRouteDialog] = useState(false);
 
 	let upHandler = useKeyPress("ArrowUp");
 	let downHandler = useKeyPress("ArrowDown");
 
 	useEffect(() => {
 		if (upHandler) {
-			setMapSize((x) => x-10 < MAX_MAP_SIZE ? x + 10 : x);
+			setMapSize((x) => (x - 10 < MAX_MAP_SIZE ? x + 10 : x));
 		}
 		if (downHandler) {
-			setMapSize((x) => x+10 > MIN_MAP_SIZE ? x - 10 : x);
+			setMapSize((x) => (x + 10 > MIN_MAP_SIZE ? x - 10 : x));
 		}
 	}, [mapSize, upHandler, downHandler, setMapSize]);
-  const [route, setRoute] = useState({});
-  const [routeDialog, setRouteDialog] = useState(false);
 
 	useEffect(() => {
 		function handleResize() {
@@ -86,30 +108,25 @@ function App() {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
 
-	const updateImage = (num) => {
-		switch (num) {
-			case 0:
-				setCurrentImage("ground");
-				break;
-			case 1:
-				setCurrentImage("first");
-				break;
-			case 2:
-				setCurrentImage("second");
-				break;
-			case 3:
-				setCurrentImage("third");
-				break;
-			default:
-				console.log("Invalid floor number");
+	useEffect(() => {
+		let selected = searchData.find((x) => x.title === search);
+		
+		if (!selected) {
+			setMaps(defaultMaps);
+			return;
 		}
-	};
 
-	console.log(currentLevel);
-  useEffect(() => {
-    if (route === null) setRouteDialog(false);
-    else setRouteDialog(true);
-  }, [route, setRouteDialog]);
+		let levels = [...defaultMaps];
+		selected.levels.map((x, index) => {
+			levels[index] = (x == null) ? defaultMaps[index] : x;
+		});
+		setMaps(levels);
+		setRouteDialog(true);
+	}, [search]);
+
+	const updateImage = (num) => {
+		setCurrentImage(maps[num]);
+	};
 
 	return (
 		<div
@@ -117,15 +134,15 @@ function App() {
 				height: windowDimensions.height * 0.9,
 				width: (windowDimensions.height * 0.9) / multiplier,
 				border: "5px solid black",
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        flexDirection: "column",
-        overflow: "hidden",
-        backgroundColor: "white"
+				display: "flex",
+				justifyContent: "flex-start",
+				alignItems: "center",
+				flexDirection: "column",
+				overflow: "hidden",
+				backgroundColor: "white",
 			}}
 		>
-      <RouteTypeDialog open={routeDialog} setOpen={setRouteDialog} />
+			<RouteTypeDialog open={routeDialog} setOpen={setRouteDialog} />
 			<SearchBar
 				onClickFunc={(e) => {
 					setShowSearchScreen(true);
@@ -134,41 +151,38 @@ function App() {
 					setShowSearchScreen(false);
 				}}
 				onCentreClick={(e) => {
-					setCurrentLevel((x) => { updateImage(0); return 0; });
+					setCurrentLevel((x) => {
+						updateImage(0);
+						return 0;
+					});
 				}}
-				options={["a", "b", "c'"]}
+				options={searchData.map((x) => {
+					return x.title;
+				})}
 				value={search}
 				setValue={setSearch}
 			/>
 
-			{showSearchScreen ? (
-				<SearchDropDown
-					clickRouteFunc={(e) => {
-						let map = e.currentTarget.getAttribute("map");
-						let level = e.currentTarget.getAttribute("level");
-						setCurrentRoute(map);
-						setCurrentRouteLevel(level);
-						setShowSearchScreen(false);
-					}}
-				/>
-			) : (
-				false
-			)}
-
 			<FloorSelect
 				increaseFunc={() => {
 					if (currentLevel < 3) {
-						setCurrentLevel((x) => { updateImage(x + 1); return x + 1; });
+						setCurrentLevel((x) => {
+							updateImage(x + 1);
+							return x + 1;
+						});
 					}
 				}}
 				decreaseFunc={() => {
-					if ((currentLevel) > 0) {
-						setCurrentLevel((x) => { updateImage(x - 1); return x - 1; });
+					if (currentLevel > 0) {
+						setCurrentLevel((x) => {
+							updateImage(x - 1);
+							return x - 1;
+						});
 					}
 				}}
 				current={currentLevel}
 			/>
-			<div style={{position: "relative", height: "100%", width: "100%"}}>
+			<div style={{ position: "relative", height: "100%", width: "100%" }}>
 				<Draggable
 					bound={"parent"}
 					defaultPosition={{ x: 100, y: 0 }}
@@ -176,7 +190,7 @@ function App() {
 				>
 					<div>
 						<Image
-							imgName={currentRoute === "none" ? currentImage : currentRoute}
+							imgName={maps[currentLevel]}
 							width={mapSize}
 						/>
 					</div>

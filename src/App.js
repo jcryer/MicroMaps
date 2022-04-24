@@ -1,4 +1,4 @@
-import { Image, SearchBar, SearchDropDown } from "./Components";
+import { Image, SearchBar, SearchDropDown, FloorSelect } from "./Components";
 import { useRef, useState, useEffect } from "react";
 
 import Draggable from "react-draggable";
@@ -55,6 +55,12 @@ function App() {
 
 	const [currentImage, setCurrentImage] = useState("ground");
 
+	const [currentRoute, setCurrentRoute] = useState("none");
+
+	const [currentRouteLevel, setCurrentRouteLevel] = useState(0);
+
+	const [currentLevel, setCurrentLevel] = useState(0);
+
 	let upHandler = useKeyPress("ArrowUp");
 	let downHandler = useKeyPress("ArrowDown");
 
@@ -75,6 +81,27 @@ function App() {
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
+
+	const updateImage = () => {
+		switch (currentLevel) {
+			case 0:
+				setCurrentImage("ground");
+				break;
+			case 1:
+				setCurrentImage("first");
+				break;
+			case 2:
+				setCurrentImage("second");
+				break;
+			case 3:
+				setCurrentImage("third");
+				break;
+			default:
+				console.log("Invalid floor number");
+		}
+	};
+
+	console.log(currentLevel);
 
 	return (
 		<div
@@ -102,9 +129,10 @@ function App() {
 			{showSearchScreen ? (
 				<SearchDropDown
 					clickRouteFunc={(e) => {
-						let x = e.currentTarget.getAttribute("map");
-						console.log(String(x));
-						setCurrentImage(x);
+						let map = e.currentTarget.getAttribute("map");
+						let level = e.currentTarget.getAttribute("level");
+						setCurrentRoute(map);
+						setCurrentRouteLevel(level);
 						setShowSearchScreen(false);
 					}}
 				/>
@@ -112,13 +140,31 @@ function App() {
 				false
 			)}
 
+			<FloorSelect
+				increaseFunc={() => {
+					if (currentLevel < 3) {
+						setCurrentLevel(currentLevel + 1);
+						updateImage();
+					}
+				}}
+				decreaseFunc={() => {
+					if ((currentLevel) > 0) {
+						setCurrentLevel(currentLevel - 1);
+						updateImage();
+					}
+				}}
+			/>
+
 			<Draggable
 				bound={"parent"}
 				defaultPosition={{ x: 100, y: 100 }}
 				position={null}
 			>
 				<div>
-					<Image imgName={currentImage} width={mapSize} />
+					<Image
+						imgName={currentRoute === "none" ? currentImage : currentRoute}
+						width={mapSize}
+					/>
 				</div>
 			</Draggable>
 		</div>

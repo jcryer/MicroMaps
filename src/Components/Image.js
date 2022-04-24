@@ -1,23 +1,40 @@
 import logo from "../assets/logo.png";
-import groundFloor from "../assets/ground_floor.jpg"
-import firstFloor from "../assets/first_floor.jpg"
-import secondFloor from "../assets/second_floor.jpg"
-import thirdFloor from "../assets/third_floor.jpg"
+import groundFloor from "../assets/ground_floor.jpg";
+import firstFloor from "../assets/first_floor.jpg";
+import secondFloor from "../assets/second_floor.jpg";
+import thirdFloor from "../assets/third_floor.jpg";
 
-function Image({imgName, width, height}) {
-  let img;
+function Image({ imgName, width, height }) {
+	let img;
 	switch (imgName) {
 		case "logo":
 			img = logo;
-      break;
-    case "ground":
-      img = groundFloor;
-      break;
+			break;
+		case "ground":
+			img = groundFloor;
+			break;
+		case "first":
+			img = firstFloor;
+			break;
+		case "second":
+			img = secondFloor;
+			break;
+		case "third":
+			img = thirdFloor;
+			break;
 		default:
 			console.log("Not an image");
 			break;
 	}
-  return (<img src={img} width={width} height={height} draggable={false} style={{zIndex: -1}}/>)
+	return (
+		<img
+			src={img}
+			width={width}
+			height={height}
+			draggable={false}
+			style={{ zIndex: -1 }}
+		/>
+	);
 }
 
 export default Image;

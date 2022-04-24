@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/micro-maps/static/css/main.e6c13ad2.css",
-    "main.js": "/micro-maps/static/js/main.769c9103.js",
-    "static/media/route_2_first.jpg": "/micro-maps/static/media/route_2_first.19e42a73c4ced8d2e288.jpg",
-    "static/media/route_3_ground.jpg": "/micro-maps/static/media/route_3_ground.ddf78722106464dfdb54.jpg",
-    "static/media/second_floor.jpg": "/micro-maps/static/media/second_floor.00f99a53c8806bbbc065.jpg",
-    "static/media/route_2_ground.jpg": "/micro-maps/static/media/route_2_ground.986e6b09d47e65a453f9.jpg",
-    "static/media/route_1_ground.jpg": "/micro-maps/static/media/route_1_ground.d93dc12360ec77797d16.jpg",
-    "static/media/first_floor.jpg": "/micro-maps/static/media/first_floor.ff5e30a8b3fd967d72d3.jpg",
-    "static/media/ground_floor.jpg": "/micro-maps/static/media/ground_floor.4f65a371223e5733b5ae.jpg",
-    "static/media/logo.png": "/micro-maps/static/media/logo.4e026e798bc9fa7ea4aa.png",
-    "static/media/route_3_third.jpg": "/micro-maps/static/media/route_3_third.3e9cc42e2ee68d840b14.jpg",
-    "static/media/third_floor.jpg": "/micro-maps/static/media/third_floor.5b2bb141971101e83916.jpg",
-    "index.html": "/micro-maps/index.html",
-    "main.e6c13ad2.css.map": "/micro-maps/static/css/main.e6c13ad2.css.map",
-    "main.769c9103.js.map": "/micro-maps/static/js/main.769c9103.js.map"
+    "main.css": "/MicroMaps/static/css/main.e6c13ad2.css",
+    "main.js": "/MicroMaps/static/js/main.c20055e8.js",
+    "static/media/route_2_first.jpg": "/MicroMaps/static/media/route_2_first.19e42a73c4ced8d2e288.jpg",
+    "static/media/route_3_ground.jpg": "/MicroMaps/static/media/route_3_ground.ddf78722106464dfdb54.jpg",
+    "static/media/second_floor.jpg": "/MicroMaps/static/media/second_floor.00f99a53c8806bbbc065.jpg",
+    "static/media/route_2_ground.jpg": "/MicroMaps/static/media/route_2_ground.986e6b09d47e65a453f9.jpg",
+    "static/media/route_1_ground.jpg": "/MicroMaps/static/media/route_1_ground.d93dc12360ec77797d16.jpg",
+    "static/media/first_floor.jpg": "/MicroMaps/static/media/first_floor.ff5e30a8b3fd967d72d3.jpg",
+    "static/media/ground_floor.jpg": "/MicroMaps/static/media/ground_floor.4f65a371223e5733b5ae.jpg",
+    "static/media/logo.png": "/MicroMaps/static/media/logo.4e026e798bc9fa7ea4aa.png",
+    "static/media/route_3_third.jpg": "/MicroMaps/static/media/route_3_third.3e9cc42e2ee68d840b14.jpg",
+    "static/media/third_floor.jpg": "/MicroMaps/static/media/third_floor.5b2bb141971101e83916.jpg",
+    "index.html": "/MicroMaps/index.html",
+    "main.e6c13ad2.css.map": "/MicroMaps/static/css/main.e6c13ad2.css.map",
+    "main.c20055e8.js.map": "/MicroMaps/static/js/main.c20055e8.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.769c9103.js"
+    "static/js/main.c20055e8.js"
   ]
 }

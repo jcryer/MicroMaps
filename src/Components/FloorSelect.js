@@ -1,28 +1,29 @@
 import * as React from "react";
 import { Grid } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import RemoveIcon from "@mui/icons-material/Remove";
+import { IconButton } from "@mui/material";
 
-function FloorSelect({ increaseFunc, decreaseFunc }) {
+function FloorSelect({ increaseFunc, decreaseFunc, current }) {
 	return (
-		<Grid container>
-			<Grid item xs={1}>
-				<div onClick={increaseFunc}>
-					<AddIcon />
+		<div style={{display: "flex", width: "100%", justifyContent: "right", marginRight: 20, zIndex: 1}}>
+			<div>
+				<div>
+					<IconButton onClick={increaseFunc} aria-label="delete" disabled={current === 3}>
+						<KeyboardArrowUpIcon style={{fontSize: 35 }} />
+					</IconButton>
 				</div>
-			</Grid>
-			<Grid item xs={11} />
-			<Grid item xs={1}>
-				<div>0</div>
-			</Grid>
-			<Grid item xs={11} />
-			<Grid item xs={1}>
-				<div onClick={decreaseFunc}>
-					<RemoveIcon />
+				<div>
+					<div style={{textAlign: "center", fontWeight: "bold"}}>L.{current}</div>
 				</div>
-			</Grid>
-			<Grid item xs={11} />
-		</Grid>
+				<div>
+					<IconButton onClick={decreaseFunc} disabled={current === 0}>
+						<KeyboardArrowDownIcon style={{fontSize: 35 }}/>
+					</IconButton>
+				</div>
+			</div>
+		</div>
 	);
 }
 

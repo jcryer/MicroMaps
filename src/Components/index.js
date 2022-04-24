@@ -1,4 +1,5 @@
 export { default as Image } from "./Image";
+export { default as Logo } from "./Logo";
 export { default as SearchBar } from "./SearchBar";
 export {default as SearchDropDown} from "./SearchDropDown"
 export {default as FloorSelect} from "./FloorSelect"

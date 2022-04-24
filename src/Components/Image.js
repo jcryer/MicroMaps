@@ -1,4 +1,3 @@
-import logo from "../assets/logo.png";
 import groundFloor from "../assets/ground_floor.jpg";
 import firstFloor from "../assets/first_floor.jpg";
 import secondFloor from "../assets/second_floor.jpg";
@@ -9,12 +8,9 @@ import routeTwoFirst from "../assets/route_2_first.jpg";
 import routeThreeGround from "../assets/route_3_ground.jpg";
 import routeThreeThird from "../assets/route_3_third.jpg";
 
-function Image({ imgName, width, height }) {
+function Image({ imgName, width, height, xOffset, yOffset }) {
 	let img;
 	switch (imgName) {
-		case "logo":
-			img = logo;
-			break;
 		case "ground":
 			img = groundFloor;
 			break;
@@ -46,13 +42,14 @@ function Image({ imgName, width, height }) {
 			console.log("Not an image");
 			break;
 	}
+
 	return (
 		<img
 			src={img}
 			width={width}
 			height={height}
 			draggable={false}
-			style={{ zIndex: -1 }}
+			style={{ zIndex: -1, left: -xOffset, top: -yOffset, position: "absolute" }}
 		/>
 	);
 }

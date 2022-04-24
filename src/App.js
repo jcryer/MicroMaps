@@ -1,10 +1,12 @@
-import { Image, SearchBar, FloorSelect, RouteTypeDialog } from "./Components";
+import { Image, Logo, SearchBar, SearchDropDown, FloorSelect, RouteTypeDialog } from "./Components";
 import { useRef, useState, useEffect } from "react";
 
 import Draggable from "react-draggable";
 
-const MAX_MAP_SIZE = 2000;
-const MIN_MAP_SIZE = 500;
+const MIN_SCALE = 500;
+const MAX_SCALE = 1000;
+
+const HEIGHT_RATIO = 1.634;
 
 const defaultMaps = ["ground", "first", "second", "third"];
 
@@ -86,16 +88,18 @@ function App() {
 
 	const [route, setRoute] = useState({});
 	const [routeDialog, setRouteDialog] = useState(false);
+	const [position, setPosition] = useState({ x: 0, y: -200 });
+
 
 	let upHandler = useKeyPress("ArrowUp");
 	let downHandler = useKeyPress("ArrowDown");
 
 	useEffect(() => {
 		if (upHandler) {
-			setMapSize((x) => (x - 10 < MAX_MAP_SIZE ? x + 10 : x));
+			setMapSize((x) => x-10 < MAX_SCALE ? x + 10 : x);
 		}
 		if (downHandler) {
-			setMapSize((x) => (x + 10 > MIN_MAP_SIZE ? x - 10 : x));
+			setMapSize((x) => x+10 > MIN_SCALE ? x - 10 : x);
 		}
 	}, [mapSize, upHandler, downHandler, setMapSize]);
 
@@ -155,6 +159,8 @@ function App() {
 						updateImage(0);
 						return 0;
 					});
+					setPosition({x: 0, y: -200});
+					setMapSize(500);
 				}}
 				options={searchData.map((x) => {
 					return x.title;
@@ -184,14 +190,24 @@ function App() {
 			/>
 			<div style={{ position: "relative", height: "100%", width: "100%" }}>
 				<Draggable
-					bound={"parent"}
-					defaultPosition={{ x: 100, y: 0 }}
-					position={null}
+				onDrag={(e, d) => {
+					let x = d.x;
+					let y = d.y;
+					if (x > mapSize - 100) x = mapSize - 100;
+					if (x < 150 - (mapSize)) x = 150 - (mapSize);
+					if (y < -200 - mapSize) y = -200 - mapSize;
+					if (y > mapSize - 200) y = mapSize - 250;
+					setPosition({x: x, y: y});
+					}}
+					defaultPosition={{ x: 0, y: 0 }}
+					position={position}
 				>
 					<div>
 						<Image
 							imgName={maps[currentLevel]}
 							width={mapSize}
+							xOffset={0}
+							yOffset={0}
 						/>
 					</div>
 				</Draggable>

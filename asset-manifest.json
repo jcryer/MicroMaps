@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MicroMaps/static/css/main.e6c13ad2.css",
-    "main.js": "/MicroMaps/static/js/main.c20055e8.js",
+    "main.js": "/MicroMaps/static/js/main.aa7d9942.js",
     "static/media/route_2_first.jpg": "/MicroMaps/static/media/route_2_first.19e42a73c4ced8d2e288.jpg",
     "static/media/route_3_ground.jpg": "/MicroMaps/static/media/route_3_ground.ddf78722106464dfdb54.jpg",
     "static/media/second_floor.jpg": "/MicroMaps/static/media/second_floor.00f99a53c8806bbbc065.jpg",
@@ -14,10 +14,10 @@
     "static/media/third_floor.jpg": "/MicroMaps/static/media/third_floor.5b2bb141971101e83916.jpg",
     "index.html": "/MicroMaps/index.html",
     "main.e6c13ad2.css.map": "/MicroMaps/static/css/main.e6c13ad2.css.map",
-    "main.c20055e8.js.map": "/MicroMaps/static/js/main.c20055e8.js.map"
+    "main.aa7d9942.js.map": "/MicroMaps/static/js/main.aa7d9942.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.c20055e8.js"
+    "static/js/main.aa7d9942.js"
   ]
 }

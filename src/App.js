@@ -96,10 +96,10 @@ function App() {
 
 	useEffect(() => {
 		if (upHandler) {
-			setMapSize((x) => x-10 < MAX_SCALE ? x + 10 : x);
+			setMapSize((x) => x-4 < MAX_SCALE ? x + 4 : x);
 		}
 		if (downHandler) {
-			setMapSize((x) => x+10 > MIN_SCALE ? x - 10 : x);
+			setMapSize((x) => x+4 > MIN_SCALE ? x - 4 : x);
 		}
 	}, [mapSize, upHandler, downHandler, setMapSize]);
 
@@ -206,8 +206,8 @@ function App() {
 						<Image
 							imgName={maps[currentLevel]}
 							width={mapSize}
-							xOffset={0}
-							yOffset={0}
+							xOffset={(mapSize - 499) / 2}
+							yOffset={(mapSize - 499) / 2}
 						/>
 					</div>
 				</Draggable>
